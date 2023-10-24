@@ -7,16 +7,16 @@ export default function SignInPage() {
     <SingInContainer>
       <form>
         <MyWalletLogo />
-        <input placeholder="E-mail" type="email" />
-        <input placeholder="Senha" type="password" autocomplete="new-password" />
-        <button>Entrar</button>
+        <input placeholder="E-mail" type="email" required />
+        <input placeholder="Senha" type="password" required />
+        <button type="submit">
+          Entrar
+        </button>
       </form>
 
-      <Link>
-        Primeira vez? Cadastre-se!
-      </Link>
+      <Link to="/sign-up">Primeira vez? Cadastre-se!</Link>
     </SingInContainer>
-  )
+  );
 }
 
 const SingInContainer = styled.section`
@@ -25,4 +25,4 @@ const SingInContainer = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
+`;

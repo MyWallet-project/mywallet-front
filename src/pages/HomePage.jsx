@@ -18,6 +18,7 @@ export default function HomePage() {
               <strong>Almoço mãe</strong>
             </div>
             <Value color={"negativo"}>120,00</Value>
+            <Span>x</Span>
           </ListItemContainer>
 
           <ListItemContainer>
@@ -26,6 +27,7 @@ export default function HomePage() {
               <strong>Salário</strong>
             </div>
             <Value color={"positivo"}>3000,00</Value>
+            <Span>x</Span>
           </ListItemContainer>
         </ul>
 
@@ -120,3 +122,9 @@ const ListItemContainer = styled.li`
     margin-right: 10px;
   }
 `
+
+const Span = styled.span`
+    color: #c6c6c6;
+    right: 35px;
+    position: absolute;
+`;

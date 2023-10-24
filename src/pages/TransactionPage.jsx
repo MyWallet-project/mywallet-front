@@ -3,25 +3,27 @@ import styled from "styled-components"
 export default function TransactionsPage() {
   return (
     <TransactionsContainer>
-      <h1>Nova TRANSAÇÃO</h1>
+      <h1>Nova Transação</h1>
       <form>
         <input placeholder="Valor" type="text"/>
         <input placeholder="Descrição" type="text" />
-        <button>Salvar TRANSAÇÃO</button>
+        <button>Salvar Transação</button>
       </form>
     </TransactionsContainer>
   )
 }
 
 const TransactionsContainer = styled.main`
-  height: calc(100vh - 50px);
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 
   h1 {
-    align-self: flex-start;
-    margin-bottom: 40px;
+    align-self: center;
+    justify-self: flex-start;
+    top: 150px;
+    position: absolute;
   }
 `
