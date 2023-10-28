@@ -1,32 +1,33 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 import MyWalletLogo from "../components/MyWalletLogo"
-import { useState } from "react"
-import axios from "axios";
+import { useQuickIn } from "../hooks/useQuickIn";
+import useForm from "../hooks/useForm";
+import { useSignUp } from "../services/auth";
 
 export default function SignUpPage() {
-  const [form, setForm] = useState({ name: "", email: "", password: "", confirmPassword: "" });
-  const navigate = useNavigate();
+  //Utilizando o useState criamos váriaveis que podem ser alteradas de acordo com a nossa vontade
+  const {form, handleform} = useForm({ name: "", email: "", password: "", confirmPassword: "" });
 
-  function handleform(e){
-    e.preventDefault();
-    setForm({...form, [e.target.name]: e.target.value})
-  }
+  useQuickIn();
+  const signUp = useSignUp();
 
+
+  // Função para enviar informações inseridas pelo usuário nos inputs, para o back-end
   function submitForm(e){
     e.preventDefault();
 
+    // Verificamos se a senha e a confimação de senha são iguais
     if(form.password !== form.confirmPassword){
-      alert("As senhas não coincidem.");
-      setForm({ ...form, confirmPassword: "" });
-      return;
+      return alert("As senhas não coincidem.");
     };
     delete form.confirmPassword;
-    axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/sign-up`, form)
-      .then(res => navigate('/'))
-      .catch(err => alert(err.response.data));
+
+    // Função chamada para enviar as informações do form com os dados do usuário para o back-end
+    signUp(form);
   }
 
+  //HTML criado utilizando o react e styled components
   return (
     <SingUpContainer>
       <form onSubmit={submitForm}>
