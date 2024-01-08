@@ -1,14 +1,20 @@
-import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import AuthContext from "../constexts/authContexts";
+import { useContext, useEffect, useState } from "react"
 
-export function useQuickOut() {
+import AuthContext from "../contexts/AuthContext"
+
+import UsePromptLogin from "../components/usePrompt";
+
+
+export default function useQuickOut() {
     const { userName, token } = useContext(AuthContext);
-    const navigate = useNavigate();
+
+    const [showPrompt, setShowPrompt] = useState(false);
 
     useEffect(() => {
         if (!token || !userName) {
-            navigate('/');
+            setShowPrompt(true);
         }
-    }, []);
+    }, [token, userName]);
+
+    return showPrompt ? <UsePromptLogin /> : null;
 }
